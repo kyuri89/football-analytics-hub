@@ -1,0 +1,44 @@
+type Team {
+    id: ID!
+    name: String!
+    country: String!
+    league: String!
+    latitude: Float!
+    longitude: Float!
+}
+
+type Query {
+    # 全チームの取得
+    teams: [Team!]!
+    # IDによるチーム取得
+    team(id: ID!): Team
+    # 国別チーム取得
+    teamsByCountry(country: String!): [Team!]!
+    # リーグ別チーム取得
+    teamsByLeague(league: String!): [Team!]!
+}
+
+type Mutation {
+    # チームの作成
+    createTeam(input: CreateTeamInput!): Team!
+    # チームの更新
+    updateTeam(id: ID!, input: UpdateTeamInput!): Team
+    # チームの削除
+    deleteTeam(id: ID!): Boolean
+}
+
+input CreateTeamInput {
+    name: String!
+    country: String!
+    league: String!
+    latitude: Float!
+    longitude: Float!
+}
+
+input UpdateTeamInput {
+    name: String
+    country: String
+    league: String
+    latitude: Float
+    longitude: Float
+}
